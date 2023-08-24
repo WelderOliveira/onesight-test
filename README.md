@@ -76,3 +76,12 @@ symfony server:start
 ```
 
 ### Acesse através do IP apresentado no prompt.
+
+
+## Contribuições
+
+Contribuições são bem-vindas! Se você encontrar bugs, melhorias ou novos recursos que gostaria de adicionar, sinta-se à vontade para abrir um pull request.
+
+## Contato
+
+Se você tiver alguma dúvida ou precisar de ajuda, entre em contato através do linkedin: https://www.linkedin.com/in/welderoliveira/.
