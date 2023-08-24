@@ -20,7 +20,7 @@ class AvaliacoesController extends AbstractController
     /**
      * @return Response
      */
-    #[Route('/avaliacoes', name: 'app_avaliacoes')]
+    #[Route('/', name: 'app_avaliacoes')]
     public function index(): Response
     {
         $user = $this->getUser();
