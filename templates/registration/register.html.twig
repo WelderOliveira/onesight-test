@@ -3,17 +3,36 @@
 {% block title %}Cadastrar Usuário{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5">
+                    <img src="https://www.onesight.com.br/img/logo-ident.png"
+                         class="img-fluid" alt="logo">
+                </div>
+                <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                    <form>
+                        {{ form_errors(registrationForm) }}
 
-    {{ form_errors(registrationForm) }}
+                        {{ form_start(registrationForm, {'attr': {'class': 'form'}}) }}
+                        <div class="form-outline mb-4">
+                            {{ form_label(registrationForm.nome, 'Nome', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(registrationForm.nome, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-outline mb-4">
+                            {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="form-outline mb-4">
+                            {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'form-label'}}) }}
+                            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                        </div>
 
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.nome) }}
-    {{ form_row(registrationForm.email) }}
-    {{ form_row(registrationForm.plainPassword, {
-        label: 'Password'
-    }) }}
-
-    <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        {{ form_end(registrationForm) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
