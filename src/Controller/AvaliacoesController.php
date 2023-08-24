@@ -3,10 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Avaliacao;
-use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,11 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class AvaliacoesController extends AbstractController
 {
 
-    public function __construct(private EntityManagerInterface $entityManager)
+    public function __construct(private readonly EntityManagerInterface $entityManager)
     {
 
     }
 
+    /**
+     * @return Response
+     */
     #[Route('/avaliacoes', name: 'app_avaliacoes')]
     public function index(): Response
     {
@@ -36,6 +37,9 @@ class AvaliacoesController extends AbstractController
         ]);
     }
 
+    /**
+     * @return Response
+     */
     #[Route('/avaliacoes/dev', name: 'app_avaliacoes_show')]
     public function avaliacao(): Response
     {
@@ -48,17 +52,44 @@ class AvaliacoesController extends AbstractController
 
     /**
      * @param Request $request
-     * @return void
+     * @return Response
      */
     #[Route('/avaliacao/store', name: 'app_avaliacoes_store', methods: ['POST'])]
     public function store(Request $request)
     {
-        $responseAvaliacao = $request->request->all();
-        $avaliacao = new Avaliacao($responseAvaliacao);
+        try {
+            $responseAvaliacao = $request->request->all();
+            $avaliacao = new Avaliacao();
 
+            $avaliacao->setUrlGit($responseAvaliacao['url_git']);
+            $avaliacao->setUrlAplicacao($responseAvaliacao['url_aplicacao']);
+            $avaliacao->setTech($responseAvaliacao['tech']);
+            $avaliacao->setDesafios($responseAvaliacao['desafios']);
+            $avaliacao->setPretensaoSalarial($responseAvaliacao['pretensao_salarial']);
+            $avaliacao->setCrescimentoEsperado($responseAvaliacao['crescimento_esperado']);
+            $avaliacao->setFeedback($responseAvaliacao['feedback']);
+            $avaliacao->setDisponibilidade($responseAvaliacao['disponibilidade']);
 
+            $user = $this->getUser();
+            $avaliacao->setUser($user);
+            $user->addAvaliacao($avaliacao);
+
+            $this->entityManager->persist($user);
+            $this->entityManager->persist($avaliacao);
+
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('app_avaliacoes');
+
+        } catch (\Exception $exception) {
+            return $this->redirectToRoute('app_avaliacoes_show');
+        }
     }
 
+    /**
+     * @return Response
+     * @throws \Exception
+     */
     #[Route('/confirmAvaliacao', name: 'app_confirm')]
     public function confirmacaoAvaliacao(): Response
     {
