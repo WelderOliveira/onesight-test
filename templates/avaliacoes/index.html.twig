@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Avaliacoes!{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Olá, {{ user.nome }} </h1>
+                <h4 class="card-title">Parabéns por passar para a etapa do teste Técnico</h4>
+                <p class="card-text">Nessa página você vai encontrar as instruções, detalhes e campos para
+                    submissão.</p>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title">Detalhes da Vaga</h2>
+                <p class="card-text"><strong>Descrição da vaga:</strong> Foco em um projeto PHP e VueJS com conhecimento
+                    básico e que tenha muita vontade de evoluir aprender sobre pontos básicos e avançados de um stack
+                    utilizado em produção!
+                    A posição para um recurso de nível Junior ou Pleno.</p>
+                <p class="card-text"><strong>Salário:</strong> R$ 3.000 - R$ 10.000 por mês</p>
+                <p class="card-text"><strong>Skills:</strong>
+
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-dark">FrontEnd</li>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Vue / VueX</li>
+                        <li class="list-group-item">Twig e Vue.JS (Templating)</li>
+                    </ul>
+                    <li class="list-group-item list-group-item-dark">BackEnd</li>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Symfony (PHP)</li>
+                        <li class="list-group-item">MariaDB (Mysql)</li>
+                        <li class="list-group-item">Doctrine (ORM default do Symfony)</li>
+                    </ul>
+                    <li class="list-group-item list-group-item-dark">Development</li>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">AWS EC2 + RDS</li>
+                        <li class="list-group-item">Docker</li>
+                    </ul>
+                    <li class="list-group-item list-group-item-dark">CI/CD Deployment</li>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">GitLab CI</li>
+                        <li class="list-group-item">Ansistrano</li>
+                        <li class="list-group-item">Bash scripts</li>
+                    </ul>
+                </ul>
+                </p>
+                <p class="card-text"><strong>Responsabilidades:</strong> Trabalhar no desenvolvimento e melhoria de
+                    funcionalidades de um projeto em produção, com suporte de um dev sênior.
+                    Trabalhar com o time para melhorar o conhecimento geral Foco em um projeto dinâmico com releases
+                    rápidos e melhoria constante Aprendizado das tecnologias ainda não conhecidas</p>
+                <p class="card-text"><strong>Requisitos:</strong> Ao menos 2 anos de conhecimento em PHP e conhecimento
+                    em Javascript</p>
+                <p class="card-text"><strong>Beneficios:</strong>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Full remote com horário flexível (alinhar com o time para execução das
+                        Dailys)
+                    </li>
+                    <li class="list-group-item">Contratação: PJ ou Contractor</li>
+                    <li class="list-group-item">Possível contrato 4 dias / 5 dias por semana</li>
+                    <li class="list-group-item">Modelo de férias melhorado (2/2.5 dias por mês e podendo entar em férias
+                        a partir do segundo mês)
+                    </li>
+                </ul>
+                </p>
+            </div>
+        </div>
+        {% if data %}
+            <div class="mt-4 mb-4 text-center">
+                <a href="{{ path('app_confirm') }}" class="btn btn-primary">Aceitar Participar</a>
+            </div>
+        {% else %}
+            <div class="mt-4 mb-4 text-center">
+                <a href="{{ path('app_avaliacoes_show') }}" class="btn btn-primary">Visualizar Teste</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
