@@ -1,0 +1,172 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Avaliação!{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div id="countdown-container">
+            <div id="countdown"></div>
+        </div>
+        <div class="accordion" id="challengeAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Envie seu desafio aqui!
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                     data-bs-parent="#challengeAccordion">
+                    <div class="accordion-body">
+                        <p>Responda as questões e submeta seu teste aqui:</p>
+                        <form action="{{ path('app_avaliacoes_store') }}" method="post">
+                            <div class="mb-3">
+                                <label for="url_git" class="form-label">Git</label>
+                                <input type="text" class="form-control" id="url_git" name="url_git"
+                                       placeholder="Link do repositório no GitHub" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="url_aplicacao" class="form-label">Link do Teste</label>
+                                <input type="text" class="form-control" id="url_aplicacao" name="url_aplicacao"
+                                       placeholder="URL da publicação"
+                                       data-bs-toggle="tooltip"
+                                       data-bs-placement="right"
+                                       title="Caso tenha publicado o teste, insira a URL para acessa-lo">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tech" class="form-label">Novas Techs</label>
+                                <input type="text" class="form-control" id="tech" name="tech"
+                                       placeholder="Skills aprendidas"
+                                       data-bs-toggle="tooltip"
+                                       data-bs-placement="right"
+                                       title="Gostariamos de saber o que você pode absorver de novas técnologias executando esse teste">
+                            </div>
+                            <div class="mb-3">
+                                <label for="desafios" class="form-label">Desafios</label>
+                                <input type="text" class="form-control" id="desafios" name="desafios"
+                                       placeholder="Desafios encontrados"
+                                       data-bs-toggle="tooltip"
+                                       data-bs-placement="right"
+                                       title="Nós conte o que mais te desafiou dentre as tarefas e tecnologias adotadas">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pretensao_salarial" class="form-label">Pretensão Salarial</label>
+                                <input type="number" class="form-control" id="pretensao_salarial"
+                                       name="pretensao_salarial" placeholder="Pretensão Salarial"
+                                       data-bs-toggle="tooltip"
+                                       data-bs-placement="right"
+                                       title="Nós conte qual sua pretensão salarial para o cargo almejado">
+                            </div>
+                            <div class="mb-3">
+                                <label for="crescimento_esperado" class="form-label">Reajuste anual</label>
+                                <input type="text" class="form-control" id="crescimento_esperado"
+                                       name="crescimento_esperado" placeholder="%"
+                                       data-bs-toggle="tooltip"
+                                       data-bs-placement="right"
+                                       title="Nós conte qual seria um porcentagem justa de ajuste anual em seu salário">
+                            </div>
+                            <div class="mb-3">
+                                <label for="feedback" class="form-label">Feedback</label>
+                                <input type="text" class="form-control" id="feedback" name="feedback"
+                                       placeholder="Deixe sua sugestões aqui"
+                                       data-bs-toggle="tooltip"
+                                       data-bs-placement="right"
+                                       title="O que está achando do nosso Processo Seletivo até esse momento?">
+                            </div>
+                            <div class="mb-3">
+                                <label for="disponibilidade" class="form-label">Qual sua disponibilidade para
+                                    ínicio?</label>
+                                <input type="text" class="form-control" id="disponibilidade" name="disponibilidade"
+                                       placeholder="Ex: Amanhã, Agora Mesmo!, apenas em 2052">
+                            </div>
+                            <button class="btn btn-primary">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title">Detalhes do Teste</h2>
+                <p class="card-text"><strong>Descrição:</strong> Neste teste você precisa criar e subir para o git uma
+                    versão básica do framework Symfony em execução com alguma funcionalidade dinâmica
+                    Como exemplos de funcionaliadades temos: um calendario, um login de um dashboard, uma página com
+                    charts, etc.. (qualquer funcionalidade dinâmica que você julgar adequado e bom para o teste!)</p>
+                <p class="card-text"><strong>Avaliação:</strong>
+                <ul class="list-group">
+                    <li class="list-group-item"><input class="form-check-input me-1" type="checkbox" value=""
+                                                       aria-label="...">Qualidade de código (nomenclatura, comentários,
+                        estrutura, etc)
+                    </li>
+                    <li class="list-group-item"><input class="form-check-input me-1" type="checkbox" value=""
+                                                       aria-label="...">Quantidade de commits
+                    </li>
+                    <li class="list-group-item"><input class="form-check-input me-1" type="checkbox" value=""
+                                                       aria-label="...">Facilidade de execução do teste (idealmente
+                        somente um "docker compose up" deveria ser o suficiente
+                    </li>
+                    <li class="list-group-item"><input class="form-check-input me-1" type="checkbox" value=""
+                                                       aria-label="...">Tempo de realização do teste
+                    </li>
+                </ul>
+                </p>
+                <p class="card-text"><strong>Dicas:</strong>
+                <ul class="list-group">
+                    <li class="list-group-item">Pontos extras se você mandar uma url com o projeto em execução</li>
+                    <li class="list-group-item">Lembre-se de criar um README.MD</li>
+                    <li class="list-group-item">Gitflow é um pattern interessante</li>
+                    <li class="list-group-item">O design é um modo de ajudar a avaliar os conhecimentos de frontend</li>
+                </ul>
+                </p>
+                <p class="card-text"><strong>Recomendações:</strong>
+                <ul class="list-group">
+                    <li class="list-group-item">O tempo é limitado, então recomendamos primeiro desenvolver o necessário
+                        e depois melhorar
+                    </li>
+                    <li class="list-group-item">Faça o máximo de commits possíveis e seja claro na descrição dos commits
+                    </li>
+                    <li class="list-group-item">ENVIE O TESTE;</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block js %}
+
+    <!-- Incluindo Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Incluindo Bootstrap JS (opcional, caso queira utilizar componentes interativos do Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Configurações para a contagem regressiva
+
+        var targetDate = new Date('{{ data }}');
+        targetDate.setTime(targetDate.getTime() + (72 * 60 * 60 * 1000)); // Adicionando 72 horas em milissegundos
+
+        var countdownInterval = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = targetDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').innerHTML = 'Tempo expirado';
+            }
+        }, 1000);
+
+        // Ative os tooltips do Bootstrap
+        $(document).ready(function () {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+    </script>
+{% endblock %}
